@@ -125,9 +125,11 @@ void loop() {
       case '5':
         calibrateY();
         Serial.write('5');
+        break;
       case '6':
         calibrateX();
         Serial.write('6');
+        break;
       default:
         Serial.write('7');
         break;
