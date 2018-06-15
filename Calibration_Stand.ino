@@ -17,9 +17,6 @@
 boolean xDir = true;
 boolean yDir = true;
 
-// for incoming serial data
-int incomingByte = 0;
-
 void step(boolean dir, byte dirPin, byte stepperPin, int steps, int motorSpeed = MOTOR_SPEED)
 {
   digitalWrite(dirPin, dir);
@@ -105,67 +102,49 @@ void setup() { // set the IO pins for the stepper motors as output
 }
 
 void loop() {
-  // reply only when you receive data
   if (Serial.available() > 0) {
-    // read the incoming byte
-    incomingByte = Serial.read();
-    // convert it to char
-    char i = incomingByte;
-    Serial.println(i);
+    char incomingByte = Serial.read();
     
     switch (incomingByte) {
       case '1':
         calibrateX(xDir, CALIBRATION_SPEED);
-        Serial.write('1');
         break;
       case '2':
         calibrateX(!xDir, CALIBRATION_SPEED);
-        Serial.write('2');
         break;
       case '3':
         calibrateY(!yDir, CALIBRATION_SPEED);
-        Serial.write('3');
         break;
       case '4':
         calibrateY(yDir, CALIBRATION_SPEED);
-        Serial.write('4');
         break;
       case '5':
         rotate180X(!xDir);
-        Serial.write('5');
         break;
       case '6':
         rotate90X(!xDir);
-        Serial.write('6');
         break;
       case '7':
         rotate90X(xDir);
-        Serial.write('7');
         break;
       case '8':
         rotate180X(xDir);
-        Serial.write('8');
         break;
       case '9':
         rotate180Y(yDir);
-        Serial.write('9');
         break;
       case '0':
         rotate90Y(yDir);
-        Serial.write('0');
         break;
       case '-':
         rotate90Y(!yDir);
-        Serial.write('-');
         break;
       case '=':
         rotate180Y(!yDir);
-        Serial.write('=');
-        break;
-      default:
-        Serial.write('`');
         break;
     }
+
+    Serial.write(incomingByte);
   }
 }
 
