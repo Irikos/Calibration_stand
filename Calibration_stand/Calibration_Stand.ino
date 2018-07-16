@@ -45,7 +45,7 @@ void calibrateY(boolean dir, int motorSpeed) {
 //    step(!dir, Y_DIR, Y_STP, 0, motorSpeed);
   }
   else {
-    step(dir, Y_DIR, Y_STP, 8, motorSpeed);
+    step(dir, Y_DIR, Y_STP, 14, motorSpeed);
   }
   delay(1000);
 }
@@ -63,10 +63,10 @@ void calibrateX(boolean dir, int motorSpeed) {
   }
   delay(500);
   if (dir) {
-    step(!dir, X_DIR, X_STP, 35, motorSpeed);
+//    step(!dir, X_DIR, X_STP, 15, motorSpeed);
   }
   else {
-    step(dir, X_DIR, X_STP, 50, motorSpeed);
+    step(dir, X_DIR, X_STP, 80, motorSpeed);
   }
   delay(1000);
 }
