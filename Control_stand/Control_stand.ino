@@ -16,7 +16,7 @@ void step (boolean dir, byte dirPin, byte stepperPin, int steps)
 {
     digitalWrite (dirPin, dir);
     delay (50);
-    for (int i = 0; i <steps; i++) 
+    for (int i = 0; i < steps; i++) 
     {
         digitalWrite (stepperPin, HIGH);
         delayMicroseconds (800);
@@ -27,7 +27,7 @@ void step (boolean dir, byte dirPin, byte stepperPin, int steps)
 
 void setup () {   // The stepper motor used in the IO pin is set to output
     pinMode (MOTOR_1_DIR, OUTPUT); pinMode (MOTOR_1_STEP, OUTPUT);
-    pinMode (MOTOR_2_DIR, OUTPUT); pinMode (MOTOR_2_STP, OUTPUT);
+    pinMode (MOTOR_2_DIR, OUTPUT); pinMode (MOTOR_2_STEP, OUTPUT);
     pinMode (MOTOR_3_DIR, OUTPUT); pinMode (MOTOR_3_STEP, OUTPUT);
     pinMode (MOTOR_4_DIR, OUTPUT); pinMode (MOTOR_4_STEP, OUTPUT);
     pinMode (EN, OUTPUT);
@@ -36,13 +36,13 @@ void setup () {   // The stepper motor used in the IO pin is set to output
 
 void loop () {
     step (false, MOTOR_1_DIR, MOTOR_1_STEP, STEPS); // X 
-    step (false, MOTOR_2_DIR, MOTOR_2_STEP, STEPS); // z axis motor reverse 1 ring, the 200 step is a circle.
-    step (false, MOTOR_3_DIR, MOTOR_3_STEP, STEPS); // y axis motor reverse 1 ring, the 200 step is a circle.
-    step (false, MOTOR_4_DIR, MOTOR_4_STEP, STEPS); // y axis motor reverse 1 ring, the 200 step is a circle.
+    step (false, MOTOR_2_DIR, MOTOR_2_STEP, STEPS); // z
+    step (false, MOTOR_3_DIR, MOTOR_3_STEP, STEPS); // y 
+    step (false, MOTOR_4_DIR, MOTOR_4_STEP, STEPS); // a 
     delay (1000);
-    step (true, MOTOR_1_DIR, MOTOR_1_STEP, STEPS); // X axis motor forward 1 laps, the 200 step is a circle.
-    step (true, MOTOR_2_DIR, MOTOR_2_STEP, STEPS); // z axis motor forward 1 laps, the 200 step is a circle.
-    step (true, MOTOR_3_DIR, MOTOR_3_STEP, STEPS); // y axis motor forward 1 laps, the 200 step is a circle.
-    step (false, MOTOR_4_DIR, MOTOR_4_STEP, STEPS); // y axis motor reverse 1 ring, the 200 step is a circle.
+    step (true, MOTOR_1_DIR, MOTOR_1_STEP, STEPS); // X 
+    step (true, MOTOR_2_DIR, MOTOR_2_STEP, STEPS); // z
+    step (true, MOTOR_3_DIR, MOTOR_3_STEP, STEPS); // y 
+    step (false, MOTOR_4_DIR, MOTOR_4_STEP, STEPS); // a
     delay (1000);
 } 
