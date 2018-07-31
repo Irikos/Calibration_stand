@@ -17,12 +17,12 @@
 #define MOTOR_SPEED_14 25 // 1:100 + rotile de plastic
 
 #define STEP_14 0.001125
-#define STEP_14_ANGLE 0.000375
-#define STEP_17_ANGLE 0.05625
+#define STEP_14_ANGLE 0.000375 // 0.000375
+#define STEP_17_ANGLE 5625 // 0.05625
 
-float M1Position = 0;
-float M1Target = 90;
-int M1Speed = 60;
+long M1Position = 0;
+long M1Target = 9000000; // 5625 / 100.000
+int M1Speed = 1;
 bool M1State = LOW;
 bool M1Initialized = false;
 
@@ -80,16 +80,17 @@ void setup () {   // The stepper motor used in the IO pin is set to output
 
 void M1Step() {
     digitalWrite(MOTOR_1_DIR, HIGH);
-    if (globalCounter % M1Speed == 0 && abs(M1Target - M1Position) > STEP_17_ANGLE && M1State == LOW) {
+    if (globalCounter % M1Speed == 0 && abs(M1Target - M1Position) >= STEP_17_ANGLE && M1State == LOW) {
     digitalWrite(MOTOR_1_STEP, HIGH);
     M1State = HIGH;
     M1Position += STEP_17_ANGLE;
   }
   
-  if (globalCounter % M1Speed == 0 && abs(M1Target - M1Position) > STEP_17_ANGLE && M1State == HIGH) {
+  if (globalCounter % M1Speed == 0 && abs(M1Target - M1Position) >= STEP_17_ANGLE && M1State == HIGH) {
     digitalWrite(MOTOR_1_STEP, LOW);
     M1State = LOW;
   }
+  Serial.println(M1Position);
 }
 
 void M2Step() {
@@ -139,7 +140,7 @@ void M4Step() {
 void loop () {
   globalCounter = (globalCounter + 1) % (M1Speed + M2Speed + M3Speed + M4Speed);
 
-//  M1Step();
+  M1Step();
 //  M2Step();
 //  M3Step();
 //  M4Step();
