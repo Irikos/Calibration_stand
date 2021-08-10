@@ -1,3 +1,5 @@
+# Old Project - archived, not much to see here.
+
 # Calibration stand for IMU sensors
 
 Arduino API for moving the stand 90 and 180 degrees, with a home function. The API is used by a desktop application written in C#.
@@ -9,4 +11,4 @@ Parts used:
 
 # Control stand (aka robotic leg)
 
-To be completed.
+To be completed. (update: done but did not update here)
